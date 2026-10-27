@@ -1,0 +1,20 @@
+# Service systemd (Linux). Copiez la passerelle dans /opt/andon-passerelle, puis :
+#   sudo cp andon-passerelle.service /etc/systemd/system/
+#   sudo systemctl edit andon-passerelle   (ajoutez Environment=ANDON_CLE=ak_…)
+#   sudo systemctl enable --now andon-passerelle
+[Unit]
+Description=Passerelle Andon Atelier
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/var/lib/andon-passerelle
+ExecStart=/usr/bin/node /opt/andon-passerelle/src/index.js /opt/andon-passerelle/passerelle.json
+Restart=always
+RestartSec=10
+DynamicUser=true
+StateDirectory=andon-passerelle
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

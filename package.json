@@ -1,0 +1,25 @@
+{
+  "name": "andon-passerelle",
+  "version": "1.0.0",
+  "description": "Passerelle sur site pour Andon Atelier : lit vos automates (OPC UA, Modbus TCP, MQTT) ou un dossier CSV et pousse les compteurs et états en HTTPS sortant.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "andon-passerelle": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test --test-concurrency=1 test/*.test.js"
+  },
+  "dependencies": {
+    "mqtt": "^5.16.1",
+    "node-opcua-client": "^2.187.12"
+  },
+  "devDependencies": {
+    "aedes": "^1.2.0",
+    "node-opcua-server": "^2.187.12"
+  }
+}
